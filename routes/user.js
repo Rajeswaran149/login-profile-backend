@@ -34,17 +34,38 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// router.put("/profile", async (req, res) => {
+//   try {
+//     if (User) {
+//       User.name = req.body.name || User.name;
+//       User.email = req.body.email || User.email;
+//     }
+
+//     const newData = await User.create({
+//       age: req.body.age,
+//       gender: req.body.gender,
+//       dob: req.body.dob,
+//       mobile: req.body.mobile,
+//       address: req.body.address,
+//     });
+//     const data = await newData.save();
+//     res.send({ data });
+//   } catch (error) {
+//     res.status(400).json(error.message);
+//   }
+// });
+
 router.post("/profile", async (req, res) => {
   try {
-    const newData = await User.create({
+    const newUser = await User.create({
       age: req.body.age,
       gender: req.body.gender,
       dob: req.body.dob,
       mobile: req.body.mobile,
       address: req.body.address,
     });
-    const data = await newData.save();
-    res.send({ data });
+    const user = await newUser.save();
+    res.send({ user });
   } catch (error) {
     res.status(400).json(error.message);
   }
